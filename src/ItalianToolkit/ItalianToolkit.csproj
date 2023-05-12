@@ -10,7 +10,7 @@
 	  <Description>A collection of helper methods and classes for .NET for common Italy-related data management packed in a single library to avoid code duplication.</Description>
 	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
 	  <PackageProjectUrl>https://github.com/Defkon1/italian-toolkit</PackageProjectUrl>
-	  <PackageIcon>Toolbox.png</PackageIcon>
+	  <PackageIcon>Icon.png</PackageIcon>
 	  <PackageTags>csharp visual-studio net netstandard desktop web mobile utilities helpers italy fiscal-code</PackageTags>
 	  <RepositoryType>git</RepositoryType>
 	  <RepositoryUrl>https://github.com/Defkon1/italian-toolkit.git</RepositoryUrl>
@@ -23,8 +23,11 @@
 		<None Include="..\..\Icon.png">
 			<Pack>True</Pack>
 			<PackagePath></PackagePath>
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
-		<None Include="..\..\README.md" Pack="true" PackagePath="\" />
+		<None Include="..\..\README.md" Pack="true" PackagePath="\">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -32,5 +35,11 @@
 	    <PrivateAssets>all</PrivateAssets>
 	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	  </PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="version.json">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </None>
 	</ItemGroup>
 </Project>
