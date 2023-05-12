@@ -148,6 +148,12 @@ namespace ItalianToolkit.People
             { 25, 'Z' }
         };
 
+        /// <summary>
+        /// Check if the given fiscal code is formally valid
+        /// </summary>
+        /// <param name="fiscalCode">the fiscal code to check</param>
+        /// <returns><code>true</code> if formally valid, <code>false</code> otherwise</returns>
+        /// <exception cref="ArgumentException">if the given fiscal code is <code>null</code> or empty</exception>
         public static bool IsFormallyValid(string fiscalCode)
         {
             if (string.IsNullOrWhiteSpace(fiscalCode))
