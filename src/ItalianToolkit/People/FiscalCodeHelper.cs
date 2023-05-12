@@ -168,7 +168,16 @@ namespace ItalianToolkit.People
             return rgx.IsMatch(fiscalCode.ToUpper());
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Calculate a fiscal code with given data
+        /// </summary>
+        /// <param name="lastName">the last name</param>
+        /// <param name="firstName">the first name</param>
+        /// <param name="birthDate">the date of birth</param>
+        /// <param name="gender">the gender (e.g. "M", "F")</param>
+        /// <param name="cityCode">the Belfiore city code (e.g. "A271")</param>
+        /// <returns>a string representing the fiscal code</returns>
+        /// <exception cref="ArgumentException">if given parameters are empty or <code>null</code></exception>
         public static string CalculateFiscalCode(string lastName, string firstName, DateTime birthDate, string gender, string cityCode)
         {
             if (string.IsNullOrWhiteSpace(lastName))
