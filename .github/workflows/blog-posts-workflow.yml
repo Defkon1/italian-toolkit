@@ -1,0 +1,17 @@
+name: Latest blog post workflow
+on:
+  schedule:
+    # Runs every 8 hours
+    - cron: '0 */8 * * *'
+  workflow_dispatch:
+
+jobs:
+  update-readme-with-blog:
+    name: Update this repos README with latest blog posts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: gautamkrishnar/blog-post-workflow@master
+        with:
+          max_post_count: "5"
+          feed_list: "https://www.alessiomarinelli.it/parole-chiave/italian-toolkit/feed/"
