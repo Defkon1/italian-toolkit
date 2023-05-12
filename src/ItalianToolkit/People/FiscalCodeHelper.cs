@@ -223,7 +223,12 @@ namespace ItalianToolkit.People
             return fiscalCode;
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Checks if the given fiscal code is an homocody for the base one
+        /// </summary>
+        /// <param name="baseFiscalCode">the base fiscal code</param>
+        /// <param name="homocodyFiscalCode">the fiscal code to check</param>
+        /// <returns><code>true</code> if given fiscal code is an homocody for the base one, <code>false</code> otherwise</returns>
         public static bool IsHomocody(string baseFiscalCode, string homocodyFiscalCode)
         {
             var variations = GenerateHomocodies(baseFiscalCode.ToUpper());
