@@ -40,6 +40,7 @@ Always use the **developizza** branch for your Pull Requests, don't target the *
 
 # Blog
 <!-- BLOG-POST-LIST:START -->
+- [Italian Toolkit – developizza e maindolino](https://www.alessiomarinelli.it/2023/05/italian-toolkit-developizza-e-maindolino/)
 <!-- BLOG-POST-LIST:END -->
 
 # Thanks
