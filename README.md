@@ -8,7 +8,7 @@
 
 A collection of helper methods and classes for .NET for common Italy-related data management packed in a single library to avoid code duplication.
 
-**Installation**
+# Installation
 
 The library is available on [NuGet](https://www.nuget.org/packages/ItalianToolkit). Just search for *ItalianToolkit* in the **Package Manager GUI** or run the following command in the **.NET CLI**:
 
