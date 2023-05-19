@@ -59,6 +59,7 @@ This repo participates to the [GitHub + DEV 2023 Hackathon](tps://dev.to/devteam
  * [Linter](https://github.com/Defkon1/italian-toolkit/blob/maindolino/.github/workflows/linter.yml)
  * [Build and push to NuGet](https://github.com/Defkon1/italian-toolkit/blob/maindolino/.github/workflows/publish-to-nuget.yml)
  * [Update README with blog posts](https://github.com/Defkon1/italian-toolkit/blob/maindolino/.github/workflows/blog-posts-workflow.yml)
+ * [Test runner with report generation](https://github.com/Defkon1/italian-toolkit/blob/maindolino/.github/workflows/test-runner.yml)
 
 # License
 
