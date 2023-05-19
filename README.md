@@ -34,7 +34,7 @@ The library is available on [NuGet](https://www.nuget.org/packages/ItalianToolki
 # Contributing
 
 Contributions are welcome. Feel free to file issues and pull requests on the repo and we'll address them as we can. 
-This repo uses (Project Template)[https://github.com/Josee9988/project-template]'s issue templates, but feel free to open a blank issue if you don't find a template that fits your needs.
+This repo uses [Project Template](https://github.com/Josee9988/project-template)'s issue templates, but feel free to open a blank issue if you don't find a template that fits your needs.
 
 > **Warning**
 Always use the **developizza** branch for your Pull Requests, don't target the **maindolino** branch directly.
