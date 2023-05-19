@@ -1,4 +1,4 @@
-name: CI
+name: CI - Test runner
 
 on:
   push:
@@ -8,17 +8,13 @@ on:
     branches:
     - maindolino
   workflow_dispatch:
-
-env:
-  NET_VERSION: '7.x'
-  SOLUTION_PATH: src/ItalianToolkit.sln
     
 jobs:
   build_and_test:
 
     env:
       BUILD_CONFIG: 'Release'
-      SOLUTION: '${{ env.SOLUTION_PATH }}'
+      SOLUTION: 'src/ItalianToolkit.sln'
 
     runs-on: ubuntu-latest
 
