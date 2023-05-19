@@ -44,6 +44,10 @@ Always use the **developizza** branch for your Pull Requests, don't target the *
 - [Italian Toolkit – developizza e maindolino](https://www.alessiomarinelli.it/2023/05/italian-toolkit-developizza-e-maindolino/)
 <!-- BLOG-POST-LIST:END -->
 
+# Changelog
+
+You can find a detailed changelog [here](https://github.com/Defkon1/italian-toolkit/blob/maindolino/CHANGELOG.md).
+
 # Thanks
 
 Special thanks to [Marco Minerva](https://github.com/marcominerva/) for his continuous and tireless work in favor of the community, and for [this video in particular](https://www.youtube.com/watch?v=N-MYq7HXhew) from which I practically copied & pasted the version management.
