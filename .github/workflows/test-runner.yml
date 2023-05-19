@@ -8,6 +8,9 @@ on:
     branches:
     - maindolino
   workflow_dispatch:
+
+permissions:
+  checks: write
     
 jobs:
   build_and_test:
