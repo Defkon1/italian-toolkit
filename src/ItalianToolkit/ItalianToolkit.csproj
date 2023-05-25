@@ -16,7 +16,6 @@
 	  <RepositoryUrl>https://github.com/Defkon1/italian-toolkit.git</RepositoryUrl>
 	  <RepositoryBranch>maindolino</RepositoryBranch>
 	  <PackageReadmeFile>README.md</PackageReadmeFile>
-	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
 	<ItemGroup>

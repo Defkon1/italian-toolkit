@@ -4,14 +4,16 @@ on:
     # Runs every 8 hours
     - cron: '0 */8 * * *'
   workflow_dispatch:
+permissions:
+  contents: write # To write the generated contents to the readme
 
 jobs:
   update-readme-with-blog:
     name: Update this repos README with latest blog posts
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: gautamkrishnar/blog-post-workflow@master
+      - uses: actions/checkout@v3
+      - uses: gautamkrishnar/blog-post-workflow@v1
         with:
           max_post_count: "5"
           feed_list: "https://www.alessiomarinelli.it/parole-chiave/italian-toolkit/feed/"

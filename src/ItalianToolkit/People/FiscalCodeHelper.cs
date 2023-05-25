@@ -148,6 +148,12 @@ namespace ItalianToolkit.People
             { 25, 'Z' }
         };
 
+        /// <summary>
+        /// Check if the given fiscal code is formally valid
+        /// </summary>
+        /// <param name="fiscalCode">the fiscal code to check</param>
+        /// <returns><code>true</code> if formally valid, <code>false</code> otherwise</returns>
+        /// <exception cref="ArgumentException">if the given fiscal code is <code>null</code> or empty</exception>
         public static bool IsFormallyValid(string fiscalCode)
         {
             if (string.IsNullOrWhiteSpace(fiscalCode))
@@ -168,7 +174,16 @@ namespace ItalianToolkit.People
             return rgx.IsMatch(fiscalCode.ToUpper());
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Calculate a fiscal code with given data
+        /// </summary>
+        /// <param name="lastName">the last name</param>
+        /// <param name="firstName">the first name</param>
+        /// <param name="birthDate">the date of birth</param>
+        /// <param name="gender">the gender (e.g. "M", "F")</param>
+        /// <param name="cityCode">the Belfiore city code (e.g. "A271")</param>
+        /// <returns>a string representing the fiscal code</returns>
+        /// <exception cref="ArgumentException">if given parameters are empty or <code>null</code></exception>
         public static string CalculateFiscalCode(string lastName, string firstName, DateTime birthDate, string gender, string cityCode)
         {
             if (string.IsNullOrWhiteSpace(lastName))
@@ -214,7 +229,12 @@ namespace ItalianToolkit.People
             return fiscalCode;
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Checks if the given fiscal code is an homocody for the base one
+        /// </summary>
+        /// <param name="baseFiscalCode">the base fiscal code</param>
+        /// <param name="homocodyFiscalCode">the fiscal code to check</param>
+        /// <returns><code>true</code> if given fiscal code is an homocody for the base one, <code>false</code> otherwise</returns>
         public static bool IsHomocody(string baseFiscalCode, string homocodyFiscalCode)
         {
             var variations = GenerateHomocodies(baseFiscalCode.ToUpper());
