@@ -22,6 +22,9 @@ The library is available on [NuGet](https://www.nuget.org/packages/ItalianToolki
   - [x] Homocodies calculation from base fiscal code
   - [x] Homocody validation
   - [ ] Birthplace validation
+- [x] ANPR Identifier (ID ANPR)
+  - [x] Formal validation (EXPERIMENTAL)
+  - [x] Check character calculation (EXPERIMENTAL)
 - [ ] Transports
   - [ ] Car plates validation (pre 1994)
   - [ ] Car plates validation (post 1994) 
@@ -30,6 +33,10 @@ The library is available on [NuGet](https://www.nuget.org/packages/ItalianToolki
   - [ ] Provinces
   - [ ] Municipalities and metropolitan areas
 - [ ] Other? - File an issue!
+
+## ANPR Identifier support (EXPERIMENTAL)
+
+The validation methods for ANPR Identifier are released as EXPERIMENTAL because the *official technical specification is not yet available*, and it was written reverse engineering the available technical information (and a bit of try & guess). 
 
 # Contributing
 
