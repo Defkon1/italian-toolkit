@@ -37,7 +37,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Homocody validation
 
 
-[Unreleased]: https://github.com/defkon1/italian-toolkit/compare/v1.0.1...HEAD
+[Unreleased]: https://github.com/defkon1/italian-toolkit/compare/v1.1.1...HEAD
 [1.1.1]: https://github.com/defkon1/italian-toolkit/compare/v1.0.1...v1.1.1
 [1.0.1]: https://github.com/defkon1/italian-toolkit/compare/v0.1.8-beta...v1.0.1
 [0.1.8-beta]: https://github.com/defkon1/italian-toolkit/compare/v0.1.7-beta...v0.1.8-beta
