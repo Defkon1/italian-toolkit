@@ -48,6 +48,7 @@ Always use the **developizza** branch for your Pull Requests, don't target the *
 
 # Blog
 <!-- BLOG-POST-LIST:START -->
+- [Italian Toolkit 1.1.1 – Supporto all’Identificativo unico nazionale &lpar;ID ANPR&rpar;](https://www.alessiomarinelli.it/2023/06/italian-toolkit-1-1-1-supporto-allidentificativo-unico-nazionale-id-anpr/)
 - [Italian Toolkit – developizza e maindolino](https://www.alessiomarinelli.it/2023/05/italian-toolkit-developizza-e-maindolino/)
 <!-- BLOG-POST-LIST:END -->
 
