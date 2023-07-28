@@ -26,8 +26,78 @@ The library is available on [NuGet](https://www.nuget.org/packages/ItalianToolki
   - [x] Formal validation (EXPERIMENTAL)
   - [x] Check character calculation (EXPERIMENTAL)
 - [ ] Transports
-  - [ ] Car plates validation (pre 1994)
-  - [ ] Car plates validation (post 1994) 
+  - [ ] Car plates validation
+    - [ ] Car plates (pre 1994)
+    - [x] Car plates (post 1994)
+  - [ ] Motorcycles and Motorbikes plates validation
+    - [x] Motorcycles (mopeds, three-wheelers, motor-tractors and light quadricycles with an engine capacity of less than 50 cm³)
+    - [x] Motorbikes (more than 50 cm³) - (Warning: old provinces codes check is missing)
+  - [ ] Special vehicles plates validation
+    - [ ] Carabineers
+    - [ ] Civil Protection Department
+      - [x] Cars
+      - [ ] Trailers used as emergency shelter
+      - [x] Civil Protection - Aosta Valley
+      - [x] Civil Protection - Bolzano
+      - [x] Civil Protection - Friuli
+      - [X] Civil Protection - Trento
+    - [x] Coast Guard - Port Authorities
+      - [x] Department representative vehicles
+      - [x] Cars
+      - [x] Buses and heavy vehicles
+      - [x] Motorbikes
+      - [x] Trailers 
+    - [ ] Diplomatic, consular corps and United Nations vehicles
+      - [ ] Consolar corps
+      - [ ] Diplomatic corps
+      - [ ] United Nations (service vehicles)
+      - [ ] United Nations (staff personal vehicles)
+      - [ ] United Nations (vehicles in transit through Italy)
+    - [x] Foreign Excursionists (EE) temporary plates
+    - [x] Finance Guards
+      - [x] Cars
+      - [x] Motorbikes
+      - [x] Trailers
+    - [ ] Fire Fighters
+      - [ ] Cars
+      - [ ] Trailers
+      - [ ] Fire Fighters - Bolzano
+      - [ ] Fire Fighters - Trento
+    - [x] Forestry Corps
+      - [x] Italian Forestry Corps
+      - [x] Forestry Corps - Aosta
+      - [x] Forestry Corps - Bolzano
+      - [x] Forestry Corps - Friuli      
+      - [x] Forestry Corps - Sardinia (all provinces)
+      - [x] Forestry Corps - Sicily (all provinces)
+      - [x] Forestry Corps - Trento
+    - [ ] Historical vehicles re-registered
+    - [x] Italian Red Cross
+      - [x] Italian Red Cross (cars and ambulances)
+      - [x] Italian Red Cross (motorcycles, motorbikes, trailers and roulottes)
+    - [ ] Italian Air Force
+      - [ ] Cars
+      - [ ] Motorbikes
+    - [ ] Italian Army
+      - [ ] Cars
+      - [ ] Trailers
+      - [ ] Tanks and armored vehicles
+      - [ ] Hystorical vehicles
+    - [ ] Italian Navy
+      - [ ] Cars
+      - [ ] Trailers
+    - [ ] Local Police
+      - [ ] Cars
+      - [ ] Motorcycles
+      - [ ] Motorbikes
+    - [x] Penitentiary Police
+    - [ ] Temporary plates for vehicles in transit
+    - [ ] Temporary plates for vehicles in transit of Foreign Entities
+    - [ ] Test plates
+    - [x] Sovereign Military Order of Malta
+     - [x] Cars
+     - [x] Motorbykes
+    - [x] State Police   
 - [ ] Places
   - [ ] Regions
   - [ ] Provinces

@@ -405,7 +405,7 @@ namespace ItalianToolkit.People
                             result.Append(firstName[i]);
                         Cont += 1;
                         if (Cont == 4)
-                            return result.ToString(); ;
+                            return result.ToString();
                     }
                 }
 
