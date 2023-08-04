@@ -7,7 +7,7 @@ namespace ItalianToolkit.Transports.PlatesIdentifierPlugins
     public abstract class RegexMultiPlateIdentifier : IPlatesIdentifierPlugin
     {
         public virtual Dictionary<PlateType, string> Patterns => new Dictionary<PlateType, string>();
-       
+
         public virtual Plate TryIdentifyPlate(string plateNumber)
         {
             var testPlateNumber = plateNumber.Trim().ToUpper().Replace(" ", "");
@@ -19,7 +19,7 @@ namespace ItalianToolkit.Transports.PlatesIdentifierPlugins
                 Regex regex = new Regex(pattern.Value, RegexOptions.IgnoreCase);
                 if (regex.IsMatch(testPlateNumber))
                 {
-                     res = new Plate()
+                    res = new Plate()
                     {
                         PlateNumber = plateNumber,
                         Type = pattern.Key

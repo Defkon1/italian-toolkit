@@ -1,5 +1,5 @@
-﻿using ItalianToolkit.Transports.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using ItalianToolkit.Transports.Models;
 
 namespace ItalianToolkit.Transports.PlatesIdentifierPlugins
 {

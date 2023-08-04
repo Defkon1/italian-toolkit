@@ -31,7 +31,7 @@ The library is available on [NuGet](https://www.nuget.org/packages/ItalianToolki
     - [x] Car plates (post 1994)
   - [ ] Motorcycles and Motorbikes plates validation
     - [x] Motorcycles (mopeds, three-wheelers, motor-tractors and light quadricycles with an engine capacity of less than 50 cm³)
-    - [x] Motorbikes (more than 50 cm³) - (Warning: old provinces codes check is missing)
+    - [x] Motorbikes (motor vehicles and quadrycycles with an engine capacity of more than 50 cm³) - (Warning: old provinces codes check is missing)
   - [ ] Special vehicles plates validation
     - [ ] Carabineers
     - [ ] Civil Protection Department
@@ -95,8 +95,8 @@ The library is available on [NuGet](https://www.nuget.org/packages/ItalianToolki
     - [ ] Temporary plates for vehicles in transit of Foreign Entities
     - [ ] Test plates
     - [x] Sovereign Military Order of Malta
-     - [x] Cars
-     - [x] Motorbykes
+      - [x] Cars
+      - [x] Motorbykes
     - [x] State Police   
 - [ ] Places
   - [ ] Regions
