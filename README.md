@@ -47,22 +47,23 @@ The library is available on [NuGet](https://www.nuget.org/packages/ItalianToolki
       - [x] Buses and heavy vehicles
       - [x] Motorbikes
       - [x] Trailers 
-    - [ ] Diplomatic, consular corps and United Nations vehicles
-      - [ ] Consolar corps
-      - [ ] Diplomatic corps
-      - [ ] United Nations (service vehicles)
-      - [ ] United Nations (staff personal vehicles)
-      - [ ] United Nations (vehicles in transit through Italy)
+    - [x] Diplomatic, consular corps and United Nations vehicles
+      - [x] Consolar corps
+      - [x] Diplomatic corps
+      - [x] United Nations (service vehicles)
+      - [x] United Nations (staff personal vehicles)
+      - [x] United Nations (vehicles in transit through Italy)
     - [x] Foreign Excursionists (EE) temporary plates
     - [x] Finance Guards
       - [x] Cars
       - [x] Motorbikes
       - [x] Trailers
-    - [ ] Fire Fighters
-      - [ ] Cars
-      - [ ] Trailers
-      - [ ] Fire Fighters - Bolzano
-      - [ ] Fire Fighters - Trento
+    - [x] Fire Fighters
+      - [x] Cars
+      - [x] Trailers
+      - [x] Test plates
+      - [x] Fire Fighters - Bolzano
+      - [x] Fire Fighters - Trento
     - [x] Forestry Corps
       - [x] Italian Forestry Corps
       - [x] Forestry Corps - Aosta
@@ -75,14 +76,13 @@ The library is available on [NuGet](https://www.nuget.org/packages/ItalianToolki
     - [x] Italian Red Cross
       - [x] Italian Red Cross (cars and ambulances)
       - [x] Italian Red Cross (motorcycles, motorbikes, trailers and roulottes)
-    - [ ] Italian Air Force
-      - [ ] Cars
-      - [ ] Motorbikes
-    - [ ] Italian Army
-      - [ ] Cars
-      - [ ] Trailers
-      - [ ] Tanks and armored vehicles
-      - [ ] Hystorical vehicles
+    - [x] Italian Air Force
+      - [x] Cars
+      - [x] Motorbikes
+    - [x] Italian Army
+      - [x] Cars
+      - [x] Trailers
+      - [x] Tanks and armored vehicles
     - [ ] Italian Navy
       - [ ] Cars
       - [ ] Trailers
@@ -93,7 +93,7 @@ The library is available on [NuGet](https://www.nuget.org/packages/ItalianToolki
     - [x] Penitentiary Police
     - [ ] Temporary plates for vehicles in transit
     - [ ] Temporary plates for vehicles in transit of Foreign Entities
-    - [ ] Test plates
+    - [x] Test plates
     - [x] Sovereign Military Order of Malta
       - [x] Cars
       - [x] Motorbykes

@@ -332,6 +332,180 @@ namespace ItalianToolkit.Tests.Transports
         }
 
         [Test]
+        public void ConsularCorpsPlateShouldBeValidated()
+        {
+            // Consular Corps -> CC 000 AA
+            //                     Please note that there is a conflict with normal car plates
+
+            var validCarPlates = new[]
+            {
+                "CC 000 AA",    // Albania
+                "CC123 UA",     // Argentina
+                "CC123 VA",     // Argentina (staff)
+                "CC 666XG",     // Vatican State City
+            };
+
+            foreach (var plate in validCarPlates)
+            {
+                var result = _platesHelper.TryIdentifyPlate(plate);
+
+                Assert.IsNotNull(result);
+                Assert.IsTrue(result.IsFound);
+                Assert.IsTrue(result.Items.Any(p => p.Type == PlateType.ConsularCorps));
+            }
+        }
+
+        [Test]
+        public void DiplomaticCorpsPlateShouldBeValidated()
+        {
+            // Diplomatic Corps -> CD 000 AA
+            //                     Please note that there is a conflict with normal car plates
+
+            var validCarPlates = new[]
+            {
+                "CD 000 AA",    // Albania
+                "CD123 UA",     // Argentina
+                "CD 666XG",     // Vatican State City
+            };
+
+            foreach (var plate in validCarPlates)
+            {
+                var result = _platesHelper.TryIdentifyPlate(plate);
+
+                Assert.IsNotNull(result);
+                Assert.IsTrue(result.IsFound);
+                Assert.IsTrue(result.Items.Any(p => p.Type == PlateType.DiplomaticCorps));
+            }
+        }
+
+        [Test]
+        public void FireFightersPlateShouldBeValidated()
+        {
+            // Vigili del Fuoco -> VF 12345
+            // Vigili del Fuoco -> VF R 1234 (trailers)
+            // Vigili del Fuoco -> VF P 12345 (test plate - ambiguity with standard test plates)
+
+            var validPlates = new[]
+            {
+                "VF 12345",
+                "V F 1234 5",
+                "vf 12 345"
+            };
+
+            foreach (var plate in validPlates)
+            {
+                var result = _platesHelper.TryIdentifyPlate(plate);
+
+                Assert.IsNotNull(result);
+                Assert.IsTrue(result.IsFound);
+                Assert.IsTrue(result.Items.Any(p => p.Type == PlateType.FireFighters));
+            }
+
+            var validTrailersPlates = new[]
+            {
+                "VF r1235",
+                "V F R 1234",
+                "vf r12 34"
+            };
+
+            foreach (var plate in validTrailersPlates)
+            {
+                var result = _platesHelper.TryIdentifyPlate(plate);
+
+                Assert.IsNotNull(result);
+                Assert.IsTrue(result.IsFound);
+                Assert.AreEqual(1, result.Items.Count);
+                Assert.AreEqual(PlateType.FireFightersTrailer, result.Items.First().Type);
+            }
+
+            var validTestPlates = new[]
+            {
+                "VF p12345",
+                "V F P 12345",
+                "vf p12 345"
+            };
+
+            foreach (var plate in validTestPlates)
+            {
+                var result = _platesHelper.TryIdentifyPlate(plate);
+
+                Assert.IsNotNull(result);
+                Assert.IsTrue(result.IsFound);
+                Assert.AreEqual(2, result.Items.Count);
+                Assert.IsTrue(result.Items.Any(p => p.Type == PlateType.FireFightersTestVehicle));
+                Assert.IsTrue(result.Items.Any(p => p.Type == PlateType.TestVehicle));
+            }
+        }
+
+        [Test]
+        public void FireFightersBolzanoPlateShouldBeValidated()
+        {
+            // Vigili del Fuoco della Provincia Autonomia di Bolzano -> VFFW AAA
+
+            var validCarPlates = new[]
+            {
+                "VFFW123",
+                "VffW 1A3",
+                "VF FW AB7",
+                "vffw999",
+                "vFFw00d"
+            };
+
+            foreach (var plate in validCarPlates)
+            {
+                var result = _platesHelper.TryIdentifyPlate(plate);
+
+                Assert.IsNotNull(result);
+                Assert.IsTrue(result.IsFound);
+                Assert.AreEqual(1, result.Items.Count);
+                Assert.AreEqual(PlateType.FireFightersBolzano, result.Items.First().Type);
+            }
+        }
+
+        [Test]
+        public void FireFightersTrentoPlateShouldBeValidated()
+        {
+            // Vigili del Fuoco della Provincia Autonomia di Trento -> VF000TN
+
+            var validCarPlates = new[]
+            {
+                "VF1B3TN",
+                "vFA01TN",
+                "vFT42tN",
+                "vf07Ctn"
+            };
+
+            foreach (var plate in validCarPlates)
+            {
+                var result = _platesHelper.TryIdentifyPlate(plate);
+
+                Assert.IsNotNull(result);
+                Assert.IsTrue(result.IsFound);
+                Assert.AreEqual(1, result.Items.Count);
+                Assert.AreEqual(PlateType.FireFightersTrento, result.Items.First().Type);
+            }
+
+            var ambiguousCarPlates = new[]
+            {
+                "VF123TN",
+                "vF001TN",
+                "vF342tN",
+                "vf070tn"
+            };
+
+            foreach (var plate in ambiguousCarPlates)
+            {
+                var result = _platesHelper.TryIdentifyPlate(plate);
+
+                Assert.IsNotNull(result);
+                Assert.IsTrue(result.IsFound);
+                Assert.AreEqual(2, result.Items.Count);
+                Assert.IsTrue(result.Items.Any(p => p.Type == PlateType.Car));
+                Assert.IsTrue(result.Items.Any(p => p.Type == PlateType.FireFightersTrento));
+            }
+        }
+
+        [Test]
         public void FinanceGuardPlateShouldBeValidated()
         {
             // Guardia di Finanza -> GdiF 000 AA (cars)
@@ -1305,6 +1479,195 @@ namespace ItalianToolkit.Tests.Transports
         }
 
         [Test]
+        public void ItalianAirForcePlateShouldBeValidated()
+        {
+            // Italian Air Force plates -> AM AA 000 (starting from AM AH 500)
+
+            var validCarPlates = new[]
+            {
+                "AM AH 500",
+                "AM AH 501",
+                "AM AH 700",
+                "am bg 666",
+                "amll123",
+            };
+
+            foreach (var plate in validCarPlates)
+            {
+                var result = _platesHelper.TryIdentifyPlate(plate);
+
+                Assert.IsNotNull(result);
+                Assert.IsTrue(result.IsFound);
+                Assert.IsTrue(result.Items.Any(p => p.Type == PlateType.ItalianAirForce));
+            }
+
+            var notValidCarPlates = new[]
+           {
+                "AM AH 499",
+                "am aa 666",
+                "amab123",
+            };
+
+            foreach (var plate in notValidCarPlates)
+            {
+                var result = _platesHelper.TryIdentifyPlate(plate);
+
+                Assert.IsNotNull(result);
+                Assert.IsFalse(result.IsFound);
+                Assert.IsFalse(result.Items.Any(p => p.Type == PlateType.ItalianAirForce));
+            }
+        }
+
+        [Test]
+        public void ItalianAirForceMotorbikePlateShouldBeValidated()
+        {
+            // Italian Air Force motorbikes plates -> AM A/0000 (starting from AM A/6000)
+
+            var validPlates = new[]
+            {
+                "AM A/6000",
+                "AM A/6001",
+                "am b/1234",
+                "ama/7700",
+            };
+
+            foreach (var plate in validPlates)
+            {
+                var result = _platesHelper.TryIdentifyPlate(plate);
+
+                Assert.IsNotNull(result);
+                Assert.IsTrue(result.IsFound);
+                Assert.IsTrue(result.Items.Any(p => p.Type == PlateType.ItalianAirForceMotorbike));
+            }
+
+            var notValidPlates = new[]
+           {
+                "AM A/5000",
+                "am A/0000"
+            };
+
+            foreach (var plate in notValidPlates)
+            {
+                var result = _platesHelper.TryIdentifyPlate(plate);
+
+                Assert.IsNotNull(result);
+                Assert.IsFalse(result.IsFound);
+                Assert.IsFalse(result.Items.Any(p => p.Type == PlateType.ItalianAirForceMotorbike));
+            }
+        }
+
+        [Test]
+        public void ItalianArmyPlateShouldBeValidated()
+        {
+            // Italian Army plates -> EI AA 000
+
+            var validCarPlates = new[]
+            {
+                "EI AH 500",
+                "EI AH 501",
+                "ei AH 700",
+                "ei bg 666",
+                "eiea637",
+            };
+
+            foreach (var plate in validCarPlates)
+            {
+                var result = _platesHelper.TryIdentifyPlate(plate);
+
+                Assert.IsNotNull(result);
+                Assert.IsTrue(result.IsFound);
+                Assert.IsTrue(result.Items.Any(p => p.Type == PlateType.ItalianArmy));
+            }
+        }
+
+        [Test]
+        public void ItalianArmyMotorbikePlateShouldBeValidated()
+        {
+            // Italian Army motorbikes plates -> EI A 0000
+
+            var validPlates = new[]
+            {
+                "EI A 0000",
+                "EI B 0501",
+                "ei c 7000",
+                "ei d 6966",
+                "eih9637",
+            };
+
+            foreach (var plate in validPlates)
+            {
+                var result = _platesHelper.TryIdentifyPlate(plate);
+
+                Assert.IsNotNull(result);
+                Assert.IsTrue(result.IsFound);
+                Assert.IsTrue(result.Items.Any(p => p.Type == PlateType.ItalianArmyMotorbike));
+            }
+        }
+
+        [Test]
+        public void ItalianArmyTankPlateShouldBeValidated()
+        {
+            // Italian Army tanks and armored vehicles plates -> EI 000000 (range EI 900000 - EI 999999 is reserved for old trailers)
+
+            var validPlates = new[]
+            {
+                "EI 000000",
+                "EI 000 001",
+                "ei 123456",
+                "ei 7 6 5 4 5 6"
+            };
+
+            foreach (var plate in validPlates)
+            {
+                var result = _platesHelper.TryIdentifyPlate(plate);
+
+                Assert.IsNotNull(result);
+                Assert.IsTrue(result.IsFound);
+                Assert.IsTrue(result.Items.Any(p => p.Type == PlateType.ItalianArmyTank));
+            }
+
+            var notValidPlates = new[]
+            {
+                "EI 900000",
+                "EI 999999",
+                "ei 950000"
+            };
+
+            foreach (var plate in notValidPlates)
+            {
+                var result = _platesHelper.TryIdentifyPlate(plate);
+
+                Assert.IsNotNull(result);
+                Assert.IsFalse(result.IsFound);
+                Assert.IsFalse(result.Items.Any(p => p.Type == PlateType.ItalianArmyTank));
+            }
+        }
+
+        [Test]
+        public void ItalianArmyTrailerPlateShouldBeValidated()
+        {
+            // Italian Army Trailers plates -> RIMORCHIO EI AA 000
+
+            var validPlates = new[]
+            {
+                "RIMORCHIO EI AH 50",
+                "rimorchio EI AH 51",
+                "ri mo rc hio ei AH 70",
+                "RiMorChio ei bg 66",
+                "rimorchioeiea37",
+            };
+
+            foreach (var plate in validPlates)
+            {
+                var result = _platesHelper.TryIdentifyPlate(plate);
+
+                Assert.IsNotNull(result);
+                Assert.IsTrue(result.IsFound);
+                Assert.IsTrue(result.Items.Any(p => p.Type == PlateType.ItalianArmyTrailer));
+            }
+        }
+
+        [Test]
         public void ItalianRedCrossPlateShouldBeValidated()
         {
             // Croce Rossa Italiana -> CRI000AA (>2007), CRI00000 (2002-2007), CRI00000 (1983-2002)
@@ -1433,6 +1796,95 @@ namespace ItalianToolkit.Tests.Transports
                 Assert.IsTrue(result.IsFound);
                 Assert.AreEqual(1, result.Items.Count);
                 Assert.AreEqual(PlateType.StatePolice, result.Items.First().Type);
+            }
+        }
+
+
+        [Test]
+        public void TestPlateShouldBeValidated()
+        {
+            // Test plates -> X0 P AAAAA
+
+            var validCarPlates = new[]
+            {
+                "X0 P 1234A",
+                "Mi P TO0O0",
+                "RAP1n4t0",
+            };
+
+            foreach (var plate in validCarPlates)
+            {
+                var result = _platesHelper.TryIdentifyPlate(plate);
+
+                Assert.IsNotNull(result);
+                Assert.IsTrue(result.IsFound);
+                Assert.IsTrue(result.Items.Any(p => p.Type == PlateType.TestVehicle));
+            }
+        }
+
+        [Test]
+        public void UnitedNationsPlateShouldBeValidated()
+        {
+            // ONU service vehicles -> UN 000 AA
+            // ONU staff private vehicles -> UNP 000 AA (ambiguity with standard test plates)
+            // ONU in transit vehicles -> UNT 000 AA
+
+            {
+                var validCarPlates = new[]
+                {
+                    "UN 000 AA",
+                    "un123zz",
+                    "u n 666 o o",
+                };
+
+                foreach (var plate in validCarPlates)
+                {
+                    var result = _platesHelper.TryIdentifyPlate(plate);
+
+                    Assert.IsNotNull(result);
+                    Assert.IsTrue(result.IsFound);
+                    Assert.AreEqual(1, result.Items.Count);
+                    Assert.AreEqual(PlateType.UnitedNations, result.Items.First().Type);
+                }
+            }
+
+            {
+                var validCarPlates = new[]
+                {
+                    "UNP 000 AA",
+                    "unp123zz",
+                    "u n p 666 o o",
+                };
+
+                foreach (var plate in validCarPlates)
+                {
+                    var result = _platesHelper.TryIdentifyPlate(plate);
+
+                    Assert.IsNotNull(result);
+                    Assert.IsTrue(result.IsFound);
+                    Assert.AreEqual(2, result.Items.Count);
+                    Assert.IsTrue(result.Items.Any(p => p.Type == PlateType.UnitedNationsStaff));
+                    Assert.IsTrue(result.Items.Any(p => p.Type == PlateType.TestVehicle));
+                }
+            }
+
+            {
+                var validCarPlates = new[]
+                {
+                    "UNT 000 AA",
+                    "unt123zz",
+                    "u n t666 o o",
+                };
+
+                foreach (var plate in validCarPlates)
+                {
+                    var result = _platesHelper.TryIdentifyPlate(plate);
+
+                    Assert.IsNotNull(result);
+                    Assert.IsTrue(result.IsFound);
+                    Assert.AreEqual(1, result.Items.Count);
+                    Assert.AreEqual(PlateType.UnitedNationsInTransit, result.Items.First().Type);
+                }
             }
         }
 
