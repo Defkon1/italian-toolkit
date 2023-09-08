@@ -29,11 +29,12 @@ The library is available on [NuGet](https://www.nuget.org/packages/ItalianToolki
   - [ ] Car plates validation
     - [ ] Car plates (pre 1994)
     - [x] Car plates (post 1994)
-  - [ ] Motorcycles and Motorbikes plates validation
+    - [x] Trailers
+  - [x] Motorcycles and Motorbikes plates validation
     - [x] Motorcycles (mopeds, three-wheelers, motor-tractors and light quadricycles with an engine capacity of less than 50 cm³)
     - [x] Motorbikes (motor vehicles and quadrycycles with an engine capacity of more than 50 cm³) - (Warning: old provinces codes check is missing)
   - [ ] Special vehicles plates validation
-    - [ ] Carabineers
+    - [x] Carabineers
     - [ ] Civil Protection Department
       - [x] Cars
       - [ ] Trailers used as emergency shelter
@@ -72,7 +73,6 @@ The library is available on [NuGet](https://www.nuget.org/packages/ItalianToolki
       - [x] Forestry Corps - Sardinia (all provinces)
       - [x] Forestry Corps - Sicily (all provinces)
       - [x] Forestry Corps - Trento
-    - [ ] Historical vehicles re-registered
     - [x] Italian Red Cross
       - [x] Italian Red Cross (cars and ambulances)
       - [x] Italian Red Cross (motorcycles, motorbikes, trailers and roulottes)
@@ -83,21 +83,23 @@ The library is available on [NuGet](https://www.nuget.org/packages/ItalianToolki
       - [x] Cars
       - [x] Trailers
       - [x] Tanks and armored vehicles
-    - [ ] Italian Navy
-      - [ ] Cars
-      - [ ] Trailers
-    - [ ] Local Police
-      - [ ] Cars
-      - [ ] Motorcycles
-      - [ ] Motorbikes
+      - [x] Historical vehicles re-registered
+    - [x] Italian Navy
+      - [x] Cars
+      - [x] Trailers
+    - [x] Local Police
+      - [x] Cars
+      - [x] Motorcycles
+      - [x] Motorbikes
     - [x] Penitentiary Police
     - [ ] Temporary plates for vehicles in transit
-    - [ ] Temporary plates for vehicles in transit of Foreign Entities
     - [x] Test plates
     - [x] Sovereign Military Order of Malta
       - [x] Cars
       - [x] Motorbykes
-    - [x] State Police   
+    - [x] State Police
+      - [x] Cars
+      - [x] Special cars (e.g. Lamborghini Huracan for organs transport)
 - [ ] Places
   - [ ] Regions
   - [ ] Provinces

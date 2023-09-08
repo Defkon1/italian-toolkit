@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ItalianToolkit.Transports.Models
+﻿namespace ItalianToolkit.Transports.Models
 {
     public enum PlateType
     {
@@ -10,7 +6,9 @@ namespace ItalianToolkit.Transports.Models
         Car,
         Motorcycle,
         Motorbike,
+        Trailer,
 
+        Carabineers,
         CivilProtectionAosta,
         CivilProtectionBolzano,
         CivilProtectionDepartment,
@@ -56,11 +54,17 @@ namespace ItalianToolkit.Transports.Models
         ItalianAirForce,
         ItalianAirForceMotorbike,
         ItalianArmy,
+        ItalianArmyHistoricalVehicle,
         ItalianArmyMotorbike,
         ItalianArmyTank,
         ItalianArmyTrailer,
+        ItalianNavy,
+        ItalianNavyTrailer,
         ItalianRedCross,
         ItalianRedCrossMotorbike,
+        LocalPolice,
+        LocalPoliceMotorcycle,
+        LocalPoliceMotorbike,
         PenitentiaryPolice,
         SovereignMilitaryOrderOfMalta,
         SovereignMilitaryOrderOfMaltaMotorbike,

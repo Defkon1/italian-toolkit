@@ -7,7 +7,6 @@ using NUnit.Framework;
 namespace ItalianToolkit.Tests.Transports
 {
     internal class PlatesHelperTests
-
     {
         private PlatesIdentifier _platesHelper;
 
@@ -22,7 +21,7 @@ namespace ItalianToolkit.Tests.Transports
         {
         }
 
-        [Test]
+        [Test, Category("Common vehicles")]
         public void CarPlateShouldBeValidated()
         {
             var validCarPlates = new[]
@@ -47,7 +46,7 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Common vehicles")]
         public void CarPlateShouldFailValidation()
         {
             var notValidCarPlates = new[]
@@ -72,7 +71,7 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Common vehicles")]
         public void MotorcyclesPlateShouldBeValidated()
         {
             // Ciclomotori motocarri e mototrattori di cilindrata inferiore a 50 cm³, e quadricicli leggeri
@@ -96,7 +95,7 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Common vehicles")]
         public void MotorbikesPlateShouldBeValidated()
         {
             // Motocicli, motoveicoli, motocarri, mototrattori e quadricicli di cilindrata superiore a 50 cm³
@@ -119,7 +118,7 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Common vehicles")]
         public void MotorbikePlateShouldFailValidation()
         {
             // TODO: add filter for old provinces codes
@@ -144,7 +143,56 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Common vehicles")]
+        public void TrailersPlateShouldBeValidated()
+        {
+            var validPlates = new[]
+            {
+                "XA 123 AA",
+                "XA999 EE",
+                "xK 010 DB",
+                "xL 333BA",
+                "xl333 ba",
+                "XL333bA",
+                "xl333bA"
+            };
+
+            foreach (var plate in validPlates)
+            {
+                var result = _platesHelper.TryIdentifyPlate(plate);
+
+                Assert.IsNotNull(result);
+                Assert.IsTrue(result.IsFound);
+                Assert.AreEqual(1, result.Items.Count);
+                Assert.AreEqual(PlateType.Trailer, result.Items.First().Type);
+            }
+        }
+
+        [Test, Category("Armed Forces")]
+        public void CarabineersPlateShouldBeValidated()
+        {
+            // Arma dei Carabinieri plates -> CC AA 000
+
+            var validCarPlates = new[]
+            {
+                "CC AH 500",
+                "CC AH 501",
+                "CC AH 700",
+                "cc bg 666",
+                "ccea637",
+            };
+
+            foreach (var plate in validCarPlates)
+            {
+                var result = _platesHelper.TryIdentifyPlate(plate);
+
+                Assert.IsNotNull(result);
+                Assert.IsTrue(result.IsFound);
+                Assert.IsTrue(result.Items.Any(p => p.Type == PlateType.Carabineers));
+            }
+        }
+
+        [Test, Category("Civil Protection")]
         public void CivilProtectionAostaAndFriuliPlateShouldBeValidated()
         {
             // Protezione Civile Aosta -> PC A12
@@ -170,7 +218,7 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Civil Protection")]
         public void CivilProtectionBolzanoPlateShouldBeValidated()
         {
             // Dipartimento Protezione Civile Bolzano -> PC ZS ABC
@@ -193,7 +241,7 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Civil Protection")]
         public void CivilProtectionDepartmentPlateShouldBeValidated()
         {
             // Dipartimento Protezione Civile -> DPC A0123
@@ -216,7 +264,7 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Armed forces")]
         public void CoastGuardPlateShouldBeValidated()
         {
             // Guardia Costiera - CP 1000 - CP 1999 (Veicoli di rappresentanza)
@@ -331,7 +379,7 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Diplomatic and Consular corps")]
         public void ConsularCorpsPlateShouldBeValidated()
         {
             // Consular Corps -> CC 000 AA
@@ -355,7 +403,7 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Diplomatic and Consular corps")]
         public void DiplomaticCorpsPlateShouldBeValidated()
         {
             // Diplomatic Corps -> CD 000 AA
@@ -378,7 +426,7 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Fire Fighters")]
         public void FireFightersPlateShouldBeValidated()
         {
             // Vigili del Fuoco -> VF 12345
@@ -437,7 +485,7 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Fire Fighters")]
         public void FireFightersBolzanoPlateShouldBeValidated()
         {
             // Vigili del Fuoco della Provincia Autonomia di Bolzano -> VFFW AAA
@@ -462,7 +510,7 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Fire Fighters")]
         public void FireFightersTrentoPlateShouldBeValidated()
         {
             // Vigili del Fuoco della Provincia Autonomia di Trento -> VF000TN
@@ -505,7 +553,7 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Fire Fighters")]
         public void FinanceGuardPlateShouldBeValidated()
         {
             // Guardia di Finanza -> GdiF 000 AA (cars)
@@ -590,7 +638,7 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Special vehicles")]
         public void ForeignExcursionistsPlateShouldBeValidated()
         {
             // Escursionisti Esteri -> EE000AA
@@ -614,7 +662,7 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Forestry Corps")]
         public void ForestyCorpsPlateShouldBeValidated()
         {
             // Corpo Forestale dello Stato (<01/01/2017) -> CFS000AA
@@ -638,7 +686,7 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Forestry Corps")]
         public void ForestyCorpsPalermoPlateShouldBeValidated()
         {
             // Corpo Forestale della Provincia di Palermo -> CF000PA
@@ -697,7 +745,7 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Forestry Corps")]
         public void ForestyCorpsAgrigentoPlateShouldBeValidated()
         {
             // Corpo Forestale della Provincia di Agrigento -> CF000AG
@@ -756,7 +804,7 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Forestry Corps")]
         public void ForestyCorpsBolzanoPlateShouldBeValidated()
         {
             // Corpo Forestale della Provincia Autonomia di Bolzano -> CFFD000AA
@@ -781,7 +829,7 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Forestry Corps")]
         public void ForestyCorpsAostaPlateShouldBeValidated()
         {
             // Corpo Forestale della Provincia di Aosta -> CF000AO
@@ -806,7 +854,7 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Forestry Corps")]
         public void ForestyCorpsCagliariPlateShouldBeValidated()
         {
             // Corpo Forestale della Provincia di Cagliari -> CFVA000CA
@@ -831,7 +879,7 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Forestry Corps")]
         public void ForestyCorpsCaltanissettaPlateShouldBeValidated()
         {
             // Corpo Forestale della Provincia di Caltanissetta -> CF000CL
@@ -890,7 +938,7 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Forestry Corps")]
         public void ForestyCorpsCataniaPlateShouldBeValidated()
         {
             // Corpo Forestale della Provincia di Catania -> CF000CT
@@ -949,7 +997,7 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Forestry Corps")]
         public void ForestyCorpsEnnaPlateShouldBeValidated()
         {
             // Corpo Forestale della Provincia di Enna -> CF000EN
@@ -1008,7 +1056,7 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Forestry Corps")]
         public void ForestyCorpsMedioCampidanoPlateShouldBeValidated()
         {
             // Corpo Forestale della Provincia di Medio Campidano -> CFVA000CA
@@ -1033,7 +1081,7 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Forestry Corps")]
         public void ForestyCorpsMessinaPlateShouldBeValidated()
         {
             // Corpo Forestale della Provincia di Enna -> CF000EN
@@ -1092,7 +1140,7 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Forestry Corps")]
         public void ForestyCorpsNuoroPlateShouldBeValidated()
         {
             // Corpo Forestale della Provincia di Nuoro -> CFVA000NU
@@ -1117,7 +1165,7 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Forestry Corps")]
         public void ForestyCorpsOgliastraPlateShouldBeValidated()
         {
             // Corpo Forestale della Provincia dell'Ogliastra -> CFVA000OG
@@ -1142,7 +1190,7 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Forestry Corps")]
         public void ForestyCorpsOlbiaTempioPlateShouldBeValidated()
         {
             // Corpo Forestale della Provincia dell'Ogliastra -> CFVA000OT
@@ -1167,7 +1215,7 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Forestry Corps")]
         public void ForestyCorpsOristanoPlateShouldBeValidated()
         {
             // Corpo Forestale della Provincia di S -> CFVA000OR
@@ -1192,7 +1240,7 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Forestry Corps")]
         public void ForestyCorpsRagusaPlateShouldBeValidated()
         {
             // Corpo Forestale della Provincia di Ragusa -> CF000RG
@@ -1251,7 +1299,7 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Forestry Corps")]
         public void ForestyCorpsSassariPlateShouldBeValidated()
         {
             // Corpo Forestale della Provincia di Sassari -> CFVA000SS
@@ -1276,7 +1324,7 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Forestry Corps")]
         public void ForestyCorpsSiracusaPlateShouldBeValidated()
         {
             // Corpo Forestale della Provincia di Siracusa -> CF000SR
@@ -1335,7 +1383,7 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Forestry Corps")]
         public void ForestyCorpsSudSardegnaPlateShouldBeValidated()
         {
             // Corpo Forestale della Provincia di Oristano -> CFVA000SU
@@ -1360,7 +1408,7 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Forestry Corps")]
         public void ForestyCorpsTrapaniPlateShouldBeValidated()
         {
             // Corpo Forestale della Provincia di Trapani -> CF000TP
@@ -1419,7 +1467,7 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Forestry Corps")]
         public void ForestyCorpsTrentoPlateShouldBeValidated()
         {
             // Corpo Forestale della Provincia Autonomia di Trenot -> CF000TN
@@ -1478,7 +1526,7 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Armed Forces")]
         public void ItalianAirForcePlateShouldBeValidated()
         {
             // Italian Air Force plates -> AM AA 000 (starting from AM AH 500)
@@ -1518,7 +1566,7 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Armed Forces")]
         public void ItalianAirForceMotorbikePlateShouldBeValidated()
         {
             // Italian Air Force motorbikes plates -> AM A/0000 (starting from AM A/6000)
@@ -1556,7 +1604,7 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Armed Forces")]
         public void ItalianArmyPlateShouldBeValidated()
         {
             // Italian Army plates -> EI AA 000
@@ -1578,9 +1626,51 @@ namespace ItalianToolkit.Tests.Transports
                 Assert.IsTrue(result.IsFound);
                 Assert.IsTrue(result.Items.Any(p => p.Type == PlateType.ItalianArmy));
             }
+
+            var notValidCarPlates = new[]
+            {
+                "EI VS 500",
+                "EI VS 501",
+                "ei vs 700",
+                "ei Vs 666",
+                "eivs637",
+            };
+
+            foreach (var plate in notValidCarPlates)
+            {
+                var result = _platesHelper.TryIdentifyPlate(plate);
+
+                Assert.IsNotNull(result);
+                Assert.IsTrue(result.IsFound);
+                Assert.IsFalse(result.Items.Any(p => p.Type == PlateType.ItalianArmy));
+            }
         }
 
-        [Test]
+        [Test, Category("Armed Forces")]
+        public void ItalianArmyHistoricalVehiclePlateShouldBeValidated()
+        {
+            // Italian Army historical vehicles plates -> EI VS 000
+
+            var validCarPlates = new[]
+            {
+                "EI VS 500",
+                "EI VS 501",
+                "ei vs 700",
+                "ei Vs 666",
+                "eivs637",
+            };
+
+            foreach (var plate in validCarPlates)
+            {
+                var result = _platesHelper.TryIdentifyPlate(plate);
+
+                Assert.IsNotNull(result);
+                Assert.IsTrue(result.IsFound);
+                Assert.IsTrue(result.Items.Any(p => p.Type == PlateType.ItalianArmyHistoricalVehicle));
+            }
+        }
+
+        [Test, Category("Armed Forces")]
         public void ItalianArmyMotorbikePlateShouldBeValidated()
         {
             // Italian Army motorbikes plates -> EI A 0000
@@ -1604,7 +1694,7 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Armed Forces")]
         public void ItalianArmyTankPlateShouldBeValidated()
         {
             // Italian Army tanks and armored vehicles plates -> EI 000000 (range EI 900000 - EI 999999 is reserved for old trailers)
@@ -1643,7 +1733,7 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Armed Forces")]
         public void ItalianArmyTrailerPlateShouldBeValidated()
         {
             // Italian Army Trailers plates -> RIMORCHIO EI AA 000
@@ -1667,7 +1757,55 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Armed Forces")]
+        public void ItalianNavyPlateShouldBeValidated()
+        {
+            // Italian Navy plates -> MM AA 000
+
+            var validCarPlates = new[]
+            {
+                "MM AH 500",
+                "MM AH 501",
+                "MM AH 700",
+                "mm bg 666",
+                "mmea637",
+            };
+
+            foreach (var plate in validCarPlates)
+            {
+                var result = _platesHelper.TryIdentifyPlate(plate);
+
+                Assert.IsNotNull(result);
+                Assert.IsTrue(result.IsFound);
+                Assert.IsTrue(result.Items.Any(p => p.Type == PlateType.ItalianNavy));
+            }
+        }
+
+        [Test, Category("Armed Forces")]
+        public void ItalianNavyTrailerPlateShouldBeValidated()
+        {
+            // Italian Navy Trailers plates -> RIMORCHIO MM AA 000
+
+            var validPlates = new[]
+            {
+                "RIMORCHIO MM AH 530",
+                "rimorchio MM AH 151",
+                "ri mo rc hio mm AH 070",
+                "RiMorChio mm bg 166",
+                "rimorchiommea367",
+            };
+
+            foreach (var plate in validPlates)
+            {
+                var result = _platesHelper.TryIdentifyPlate(plate);
+
+                Assert.IsNotNull(result);
+                Assert.IsTrue(result.IsFound);
+                Assert.IsTrue(result.Items.Any(p => p.Type == PlateType.ItalianNavyTrailer));
+            }
+        }
+
+        [Test, Category("Italian Red Cross")]
         public void ItalianRedCrossPlateShouldBeValidated()
         {
             // Croce Rossa Italiana -> CRI000AA (>2007), CRI00000 (2002-2007), CRI00000 (1983-2002)
@@ -1690,7 +1828,7 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Italian Red Cross")]
         public void ItalianRedCrossMotorbikePlateShouldBeValidated()
         {
             // Croce Rossa Italiana (Motocicli, rimorchi, roulotte e ciclomotori). -> CRI000, CRI0000
@@ -1715,7 +1853,74 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Police forces")]
+        public void LocalPolicePlateShouldBeValidated()
+        {
+            // Polizia locale e municipale -> POLIZIA LOCALE YA 000 AA
+
+            var validCarPlates = new[]
+            {
+                "POLIZIA LOCALE YA 000 AA",
+                "POLIZIAlocale yg 987 kk"
+            };
+
+            foreach (var plate in validCarPlates)
+            {
+                var result = _platesHelper.TryIdentifyPlate(plate);
+
+                Assert.IsNotNull(result);
+                Assert.IsTrue(result.IsFound);
+                Assert.AreEqual(1, result.Items.Count);
+                Assert.AreEqual(PlateType.LocalPolice, result.Items.First().Type);
+            }
+        }
+
+        [Test, Category("Police forces")]
+        public void LocalPoliceMotorcyclePlateShouldBeValidated()
+        {
+            // Polizia locale e municipale -> POLIZIA LOCALE Y 00000
+            // (Ciclomotori motocarri e mototrattori di cilindrata inferiore a 50 cm³, e quadricicli leggeri)
+
+            var validCarPlates = new[]
+            {
+                "POLIZIA LOCALE YA 00000",
+                "POLIZIAlocale yh 987 65"
+            };
+
+            foreach (var plate in validCarPlates)
+            {
+                var result = _platesHelper.TryIdentifyPlate(plate);
+
+                Assert.IsNotNull(result);
+                Assert.IsTrue(result.IsFound);
+                Assert.AreEqual(1, result.Items.Count);
+                Assert.AreEqual(PlateType.LocalPoliceMotorcycle, result.Items.First().Type);
+            }
+        }
+
+        [Test, Category("Police forces")]
+        public void LocalPoliceMotorbikePlateShouldBeValidated()
+        {
+            // Polizia locale e municipale -> POLIZIA LOCALE Y 000 AA
+            // Motocicli, motoveicoli, motocarri, mototrattori e quadricicli di cilindrata superiore a 50 cm³
+            var validCarPlates = new[]
+            {
+                "POLIZIA LOCALE Y 000 AA",
+                "POLIZIAlocale y 023be"
+            };
+
+            foreach (var plate in validCarPlates)
+            {
+                var result = _platesHelper.TryIdentifyPlate(plate);
+
+                Assert.IsNotNull(result);
+                Assert.IsTrue(result.IsFound);
+                Assert.AreEqual(1, result.Items.Count);
+                Assert.AreEqual(PlateType.LocalPoliceMotorbike, result.Items.First().Type);
+            }
+        }
+
+        [Test, Category("Police forces")]
         public void PenitentiaryPolicePlateShouldBeValidated()
         {
             // Polizia penitenziaria -> POLIZIA PENITENZIARIA 000 AA
@@ -1736,7 +1941,7 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Diplomatic and Consular corps")]
         public void SovereignMilitaryOrderOfMaltaPlateShouldBeValidated()
         {
             // Sovrano Militare Ordine di Malta-> SMOM 000 (cars)
@@ -1777,7 +1982,7 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Police forces")]
         public void StatePolicePlateShouldBeValidated()
         {
             // Polizia di Stato -> POLIZIA A 0000
@@ -1799,8 +2004,7 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-
-        [Test]
+        [Test, Category("Special vehicles")]
         public void TestPlateShouldBeValidated()
         {
             // Test plates -> X0 P AAAAA
@@ -1822,7 +2026,7 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Diplomatic and Consular corps")]
         public void UnitedNationsPlateShouldBeValidated()
         {
             // ONU service vehicles -> UN 000 AA
@@ -1888,7 +2092,19 @@ namespace ItalianToolkit.Tests.Transports
             }
         }
 
-        [Test]
+        [Test, Category("Special vehicles")]
+        public void WellKnownPlateShouldBeValidated()
+        {
+            // POLIZIAE8300 -> Lamborghini Gallardo Polizia di Stato
+            var result = _platesHelper.TryIdentifyPlate("POLIZIA E8300");
+
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.IsFound);
+            Assert.AreEqual(2, result.Items.Count);
+            Assert.IsTrue(result.Items.Any(i => i is WellKnownPlate && i.Type == PlateType.StatePolice));
+        }
+
+        [Test, Category("Common vehicles")]
         public void PlatesHelperShouldThrow()
         {
             Assert.Throws<ArgumentException>(() =>

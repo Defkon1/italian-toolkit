@@ -1,5 +1,5 @@
-﻿using ItalianToolkit.Transports.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using ItalianToolkit.Transports.Models;
 
 namespace ItalianToolkit.Transports.PlatesIdentifierPlugins
 {
@@ -8,6 +8,9 @@ namespace ItalianToolkit.Transports.PlatesIdentifierPlugins
         public override Dictionary<PlateType, string> Patterns => new Dictionary<PlateType, string>()
         {
             {
+                PlateType.ItalianArmyHistoricalVehicle,
+                @"^[eE][iI][vV][sS][0-9]{3}\b$"
+            },{
                 PlateType.ItalianArmy,
                 @"^[eE][iI][A-Za-z]{2}[0-9]{3}\b$"
             },{
